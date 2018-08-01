@@ -1,6 +1,5 @@
 package br.com.studiesjavaeeapi.api.infra.repository.impl;
 
-import br.com.studiesjavaeeapi.api.infra.producer.EntityManagerProducer;
 import br.com.studiesjavaeeapi.api.infra.repository.Repository;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -18,8 +17,8 @@ public abstract class AbstractRepositoryImpl<T, ID> implements Repository<T, ID>
 
     private final EntityManager entityManager;
 
-    public AbstractRepositoryImpl() {
-        this.entityManager = EntityManagerProducer.getEntityManager();
+    public AbstractRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override

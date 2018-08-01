@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import br.com.studiesjavaeeapi.api.domain.service.ProfileService;
 import br.com.studiesjavaeeapi.api.infra.repository.ProfileRepository;
 import br.com.studiesjavaeeapi.api.infra.repository.Repository;
+import javax.transaction.Transactional;
 
 /**
  * Class responsible to implement all service cases related to the
@@ -26,43 +27,29 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<Profile> findAll() {
-        getRepository().getEntityManager().getTransaction().begin();
-        List<Profile> profiles = getRepository().findAll();
-        getRepository().getEntityManager().getTransaction().commit();
-        getRepository().getEntityManager().close();
-        return profiles;
+        return getRepository().findAll();
     }
 
     @Override
     public Profile findById(Integer id) {
-        getRepository().getEntityManager().getTransaction().begin();
-        Profile profile = getRepository().findById(id);
-        getRepository().getEntityManager().getTransaction().commit();
-        getRepository().getEntityManager().close();
-        return profile;
+        return getRepository().findById(id);
     }
 
     @Override
+    @Transactional
     public void create(Profile profile) {
-        getRepository().getEntityManager().getTransaction().begin();
         getRepository().create(profile);
-        getRepository().getEntityManager().getTransaction().commit();
-        getRepository().getEntityManager().close();
     }
 
     @Override
+    @Transactional
     public void update(Profile profile) {
-        getRepository().getEntityManager().getTransaction().begin();
         getRepository().update(profile);
-        getRepository().getEntityManager().getTransaction().commit();
-        getRepository().getEntityManager().close();
     }
 
     @Override
+    @Transactional
     public void remove(Integer id) {
-        getRepository().getEntityManager().getTransaction().begin();
         getRepository().remove(getRepository().findById(id));
-        getRepository().getEntityManager().getTransaction().commit();
-        getRepository().getEntityManager().close();
     }
 }

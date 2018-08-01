@@ -1,0 +1,15 @@
+logger:
+    level: DEBUG
+swarm:
+  datasources:
+    data-sources:
+      optsupDS:
+        driver-name: org.postgresql
+        connection-url: jdbc:postgresql://localhost:5432/studies-javaeeapi
+        user-name: postgres
+        password: a
+    jdbc-drivers:
+      org.postgresql:
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-name: org.postgresql.xa.PGXADataSource
+        driver-module-name: org.postgresql
