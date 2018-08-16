@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.envers.Audited;
 
 /**
  * Class responsible to map the profile table.
@@ -16,6 +17,7 @@ import javax.persistence.Table;
  * @since 27/11/2017
  */
 @Entity
+@Audited
 @Table(name = "profile")
 public class Profile implements Serializable {
 
