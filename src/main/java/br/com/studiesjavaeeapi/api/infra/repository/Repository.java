@@ -52,7 +52,7 @@ public interface Repository<T, ID> {
     /**
      * Removes an existent entity from database by a given identifier.
      *
-     * @param id Entity identifier.
+     * @param entity An Entity instance.
      */
     void remove(T entity);
 }
