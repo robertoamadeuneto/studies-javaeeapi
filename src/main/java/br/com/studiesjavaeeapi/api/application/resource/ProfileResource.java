@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import br.com.studiesjavaeeapi.api.domain.model.Profile;
 import br.com.studiesjavaeeapi.api.domain.service.ProfileService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Class responsible for exposing all REST resources related to the
@@ -24,6 +26,7 @@ import br.com.studiesjavaeeapi.api.domain.service.ProfileService;
  * @since 27/11/2017
  */
 @Path("profiles")
+@Api
 public class ProfileResource implements Serializable {
 
     @Inject
@@ -36,6 +39,12 @@ public class ProfileResource implements Serializable {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(httpMethod = "GET",
+            value = "Returns a list with all profiles.",
+            response = Profile.class,
+            responseContainer = "List",
+            produces = "application/json"
+    )
     public Response findAll() {
         return Response.ok(profileService.findAll()).build();
     }
@@ -49,6 +58,11 @@ public class ProfileResource implements Serializable {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(httpMethod = "GET",
+            value = "Finds a profile by a given identifier.",
+            response = Profile.class,
+            produces = "application/json"
+    )
     public Response findById(@PathParam("id") Integer id) {
         return Response.ok(profileService.findById(id)).build();
     }
@@ -62,6 +76,12 @@ public class ProfileResource implements Serializable {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(httpMethod = "POST",
+            value = "Creates a profile.",
+            response = Profile.class,
+            consumes = "application/json",
+            produces = "application/json"
+    )
     public Response create(Profile profile) {
         profileService.create(profile);
         return Response.created(URI.create("/profile/" + profile.getId())).entity(profile).build();
@@ -76,6 +96,12 @@ public class ProfileResource implements Serializable {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(httpMethod = "PUT",
+            value = "Updates a profile.",
+            response = Profile.class,
+            consumes = "application/json",
+            produces = "application/json"
+    )
     public Response update(Profile profile) {
         profileService.update(profile);
         return Response.noContent().entity(profile).build();
@@ -89,6 +115,9 @@ public class ProfileResource implements Serializable {
      */
     @DELETE
     @Path("{id}")
+    @ApiOperation(httpMethod = "DELETE",
+            value = "Removes a profile by a given identifier."
+    )
     public Response remove(@PathParam("id") Integer id) {
         profileService.remove(id);
         return Response.noContent().build();

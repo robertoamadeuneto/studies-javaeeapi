@@ -80,6 +80,16 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- Swagger -->
+        <!-- Version: 1.5.21 -->
+        <!-- URL: https://mvnrepository.com/artifact/io.swagger/swagger-jaxrs -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
+            <version>1.5.21</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <!-- RESTEasy -->
         <!-- Version: 3.0.10.Final -->
         <!-- URL: https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
@@ -128,6 +138,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <properties>
+                        <swarm.context.path>/studies-javaeeapi</swarm.context.path>
+                    </properties>
+                </configuration>
             </plugin>
             
             <plugin>
